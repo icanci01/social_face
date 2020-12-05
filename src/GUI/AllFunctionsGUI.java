@@ -65,37 +65,25 @@ public class AllFunctionsGUI extends JFrame implements ActionListener {
 			suGUI = new SearchUserGUI(con, prof_id);
 		});
         
-        show_friends.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				frame.hide();
-				try {
-					new ShowFriendsGUI(con, prof_id);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+        show_friends.addActionListener(e -> {
+			frame.setVisible(false);
+			try {
+				new ShowFriendsGUI(con, prof_id);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-        	
-        });
+		});
         
-        show_f_request.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				frame.hide();
-				try {
-					new FriendRequestGUI(con, prof_id);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+        show_f_request.addActionListener(e -> {
+			frame.setVisible(false);
+			try {
+				new FriendRequestGUI(con, prof_id);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-        	
-        });
+		});
         
         show_k_updates.addActionListener(e -> {
 			frame.setVisible(false);

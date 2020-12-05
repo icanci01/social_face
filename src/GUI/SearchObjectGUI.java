@@ -98,7 +98,7 @@ public class SearchObjectGUI extends JFrame {
 
 		String[] privacy = { "OPEN", "CLOSED", "FRIEND", "NETWROK", };
 
-		Scanner inFile1 = new Scanner(new File("CITY.txt")).useDelimiter(",\\s*");
+		Scanner inFile1 = new Scanner(new File("src\\CITY.txt")).useDelimiter(",\\s*");
 		String token1 = "";
 		ArrayList city = new ArrayList<>();
 		inFile1.nextLine();
@@ -113,7 +113,7 @@ public class SearchObjectGUI extends JFrame {
 			cit[i] = city.get(i).toString();
 		final JComboBox<String> location = new JComboBox<String>(cit);
 
-		inFile1 = new Scanner(new File("LOCATION.txt")).useDelimiter(",\\s*");
+		inFile1 = new Scanner(new File("src\\LOCATION.txt")).useDelimiter(",\\s*");
 		token1 = "";
 		ArrayList locations = new ArrayList<>();
 		inFile1.nextLine();

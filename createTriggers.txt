@@ -1,0 +1,412 @@
+CREATE TRIGGER [dbo].[Album_delete]
+       ON [dbo].[ALBUM]
+AFTER DELETE
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+       DECLARE @profile_id  INT
+	   DECLARE @object_id int
+ 
+       SELECT @profile_id  = DELETED.user_id   , @object_id  =  DELETED.id    
+       FROM DELETED
+ 
+       INSERT INTO LOG_FILE
+       VALUES(@profile_id,'ALBUM',@object_id,'DELETED')
+END
+
+GO
+
+CREATE TRIGGER [dbo].[Album_insert]
+       ON [dbo].[ALBUM]
+AFTER INSERT
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+       DECLARE @profile_id INT
+	   DECLARE @object_id int
+ 
+       SELECT @profile_id = INSERTED.user_id   , @object_id  =  INSERTED.id 
+       FROM INSERTED
+ 
+       INSERT INTO LOG_FILE
+       VALUES(@profile_id,'ALBUM',@object_id ,'Inserted')
+END
+
+GO
+
+CREATE TRIGGER [dbo].[Album_update]
+       ON [dbo].[ALBUM]
+AFTER UPDATE
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+       DECLARE @profile_id INT
+	   DECLARE @object_id int
+ 
+       SELECT @profile_id = INSERTED.user_id   , @object_id  =  INSERTED.id 
+       FROM INSERTED
+ 
+      
+ 
+       INSERT INTO LOG_FILE
+       VALUES(@profile_id,'ALBUM',@object_id,'UPDATED')
+END
+
+GO
+
+CREATE TRIGGER [dbo].[Album_Photo_delete]
+       ON [dbo].[ALBUM_PHOTO]
+AFTER DELETE
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+       DECLARE @profile_id  INT
+	   DECLARE @album_id int
+	   DECLARE @photo_id int
+	   DECLARE @action nvarchar(50)
+ 
+       SELECT  @album_id  =  DELETED.album_id  , @photo_id = DELETED.photo_id
+       FROM DELETED
+		
+		SELECT @profile_id = a.user_id 
+	   FROM PHOTO a
+	   where a.id = @photo_id
+
+	   SET @action = ' DELETED PHOTO ' + CAST( @photo_id AS nvarchar) + ' FROM ALBUM ' + CAST( @album_id AS nvarchar) 
+       INSERT INTO LOG_FILE
+       VALUES(@profile_id,'ALBUM_PHOTO',@album_id,@action)
+END
+
+GO
+
+CREATE TRIGGER [dbo].[Album_Photo_insert]
+       ON [dbo].[ALBUM_PHOTO]
+AFTER INSERT
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+       DECLARE @profile_id INT
+	   DECLARE @album_id int
+	   DECLARE @photo_id int
+	   DECLARE @action nvarchar(50)
+       SELECT @album_id  =  INSERTED.album_id , @photo_id = INSERTED.photo_id
+       FROM INSERTED
+	   
+	   SELECT @profile_id = a.user_id 
+	   FROM PHOTO a
+	   where a.id = @photo_id
+ 
+		SET @action = 'INSERT PHOTO ' + CAST( @photo_id AS nvarchar) + ' TO ALBUM ' + CAST(@album_id AS nvarchar) 
+       INSERT INTO LOG_FILE
+       VALUES(@profile_id,'ALBUM_PHOTO',@album_id ,@action)
+END
+
+GO
+
+CREATE TRIGGER [dbo].[Album_VIDEO_delete]
+       ON [dbo].[ALBUM_VIDEO]
+AFTER DELETE
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+       DECLARE @profile_id  INT
+	   DECLARE @album_id int
+	   DECLARE @video_id int
+	   DECLARE @action nvarchar(50)
+ 
+       SELECT  @album_id  =  DELETED.album_id  , @video_id = DELETED.video_id
+       FROM DELETED
+	 
+		
+	   SELECT @profile_id = a.user_id 
+	   FROM video a
+	   where a.id = @video_id
+
+	   SET @action = 'DELETED VIDEO ' + CAST(@video_id AS nvarchar) + ' FROM ALBUM ' + CAST(@album_id AS nvarchar) 
+       INSERT INTO LOG_FILE
+       VALUES(@profile_id,'ALBUM_VIDEO',@album_id,@action)
+END
+
+GO
+
+CREATE TRIGGER [dbo].[Album_Video_Insert]
+       ON [dbo].[ALBUM_VIDEO]
+AFTER INSERT
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+       DECLARE @profile_id INT
+	   DECLARE @album_id int
+	   DECLARE @video_id int
+	   DECLARE @action nvarchar(50)
+       SELECT @album_id  =  INSERTED.album_id , @video_id = INSERTED.video_id
+       FROM INSERTED
+	   
+
+	   SELECT @profile_id = a.user_id 
+	   FROM video a
+	   where a.id = @video_id
+ 
+		SET @action = 'INSERT VIDEO ' +  CAST(@video_id AS nvarchar) + ' TO ALBUM ' + CAST(@album_id AS nvarchar) 
+       INSERT INTO LOG_FILE
+       VALUES(@profile_id,'ALBUM_VIDEO',@album_id ,@action)
+END
+
+GO
+
+CREATE TRIGGER [dbo].[BOOKMARK_delete]
+       ON [dbo].[BOOKMARK]
+AFTER DELETE
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+       DECLARE @profile_id  INT
+	   DECLARE @object_id int
+ 
+       SELECT @profile_id  = DELETED.user_id   , @object_id  =  DELETED.id    
+       FROM DELETED
+ 
+       INSERT INTO dbo.[LOG_FILE]
+       VALUES(@profile_id,'BOOKMARK',@object_id,'DELETED')
+END
+ 
+ GO
+ 
+ CREATE TRIGGER [dbo].[BOOKMARK_insert]
+       ON [dbo].[BOOKMARK]
+AFTER INSERT
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+       DECLARE @profile_id INT
+	   DECLARE @object_id int
+ 
+       SELECT @profile_id = INSERTED.user_id   , @object_id  =  INSERTED.id 
+       FROM INSERTED
+ 
+       INSERT INTO dbo.[LOG_FILE]
+       VALUES (@profile_id,'BOOKMARK',@object_id, 'Inserted')
+END
+ 
+GO
+
+CREATE TRIGGER [dbo].[BOOKMARK_update]
+       ON [dbo].[BOOKMARK]
+AFTER UPDATE
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+	   DECLARE @profile_id int
+	   DECLARE @object_id int
+       DECLARE @CustomerId INT
+ 
+       SELECT @profile_id = INSERTED.user_id    ,@object_id = inserted.id 
+       FROM INSERTED
+ 
+     
+
+
+       INSERT INTO dbo.[LOG_FILE]
+       VALUES(@profile_id,'BOOKMARK',@object_id, 'UPDATED')
+END
+ 
+GO
+
+CREATE TRIGGER [dbo].[Event_delete]
+       ON [dbo].[EVENT]
+AFTER DELETE
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+       DECLARE @profile_id  INT
+	   DECLARE @object_id int
+ 
+       SELECT @profile_id  = DELETED.owner   , @object_id  =  DELETED.id    
+       FROM DELETED
+ 
+       INSERT INTO dbo.[LOG_FILE]
+       VALUES(@profile_id,'EVENT',@object_id,'DELETED')
+END
+ 
+GO
+
+CREATE TRIGGER [dbo].[EVENT_insert]
+       ON [dbo].[EVENT]
+AFTER INSERT
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+       DECLARE @profile_id INT
+	   DECLARE @object_id int
+ 
+       SELECT @profile_id = INSERTED.owner   , @object_id  =  INSERTED.id 
+       FROM INSERTED
+ 
+       INSERT INTO dbo.[LOG_FILE]
+       VALUES (@profile_id,'EVENT',@object_id, 'Inserted')
+END
+ 
+GO
+
+CREATE TRIGGER [dbo].[EVENT_update]
+       ON [dbo].[EVENT]
+AFTER UPDATE
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+		DECLARE @profile_id  int
+		DECLARE @object_id int
+       DECLARE @CustomerId INT
+       
+ 
+       SELECT @profile_id = INSERTED.owner  ,@object_id = inserted.id
+       FROM INSERTED
+ 
+      
+
+
+       INSERT INTO dbo.[LOG_FILE]
+       VALUES(@profile_id,'EVENT',@object_id, 'UPDATED')
+END
+ 
+ 
+ GO
+ 
+ 
+ CREATE TRIGGER [dbo].[Photo_delete]
+       ON [dbo].[PHOTO]
+AFTER DELETE
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+       DECLARE @profile_id  INT
+	   DECLARE @object_id int
+ 
+       SELECT @profile_id  = DELETED.user_id   , @object_id  =  DELETED.id    
+       FROM DELETED
+ 
+       INSERT INTO LOG_FILE
+       VALUES(@profile_id,'PHOTO',@object_id,'DELETED')
+END
+
+GO
+
+CREATE TRIGGER [dbo].[Photo_insert]
+       ON [dbo].[PHOTO]
+AFTER INSERT
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+       DECLARE @profile_id INT
+	   DECLARE @object_id int
+ 
+       SELECT @profile_id = INSERTED.user_id   , @object_id  =  INSERTED.id 
+       FROM INSERTED
+ 
+       INSERT INTO LOG_FILE
+       VALUES(@profile_id,'PHOTO',@object_id ,'Inserted')
+END
+
+
+GO
+
+CREATE TRIGGER [dbo].[Photo_update]
+       ON [dbo].[PHOTO]
+AFTER UPDATE
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+       DECLARE @profile_id INT
+	   	DECLARE @object_id int
+       
+		  
+       SELECT @profile_id = INSERTED.user_id   ,@object_id = inserted.id  
+       FROM INSERTED
+ 
+ 
+       INSERT INTO LOG_FILE
+       VALUES(@profile_id,'PHOTO',@object_id,'UPDATED')
+END
+
+GO
+
+CREATE TRIGGER [dbo].[VIDEO_delete]
+       ON [dbo].[VIDEO]
+AFTER DELETE
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+       DECLARE @profile_id  INT
+	   DECLARE @object_id int
+ 
+       SELECT @profile_id  = DELETED.user_id   , @object_id  =  DELETED.id    
+       FROM DELETED
+ 
+       INSERT INTO dbo.[LOG_FILE]
+       VALUES(@profile_id,'VIDEO',@object_id,'DELETED')
+END
+ 
+GO
+
+ CREATE TRIGGER [dbo].[VIDEO_insert]
+       ON [dbo].[VIDEO]
+AFTER INSERT
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+       DECLARE @profile_id INT
+	   DECLARE @object_id int
+ 
+       SELECT @profile_id = INSERTED.user_id   , @object_id  =  INSERTED.id 
+       FROM INSERTED
+ 
+       INSERT INTO dbo.[LOG_FILE]
+       VALUES (@profile_id,'VIDEO',@object_id, 'Inserted')
+END
+
+GO
+
+CREATE TRIGGER [dbo].[VIDEO_update]
+       ON [dbo].[VIDEO]
+AFTER UPDATE
+AS
+BEGIN
+       SET NOCOUNT ON;
+ 
+	   DECLARE @profile_id int
+	   DECLARE @object_id int
+       DECLARE @CustomerId INT
+       DECLARE @Action VARCHAR(50)
+ 
+       SELECT @profile_id = INSERTED.user_id   ,@object_id = inserted.id  
+       FROM INSERTED
+ 
+	 
+
+
+       INSERT INTO dbo.[LOG_FILE]
+       VALUES(@profile_id,'VIDEO',@object_id, 'UPDATED')
+END
+
+
+
+ 
+

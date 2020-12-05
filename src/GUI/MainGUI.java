@@ -24,8 +24,8 @@ public class MainGUI {
 	
 	private void run() {
 		// -- MAIN FRAME -- //
-		fGUI = new FirstGUI(con);
-		new AllFunctionsGUI(con,1);
+		//fGUI = new FirstGUI(con);
+		new ShowFriendsGUI(con,1);
 	}
 	public static void main (String[] args) {
 		MainGUI obj = new MainGUI();
