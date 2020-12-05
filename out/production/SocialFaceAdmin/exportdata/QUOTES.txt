@@ -1,0 +1,216 @@
+USER_ID	QUOTE
+1	Everything you can imagine is real.
+2	You must be the change you wish to see in the world.
+3	Love For All, Hatred For None.
+3	Change the world by being yourself.
+3	Aspire to inspire before we expire.
+4	You can do anything, but not everything.
+4	f I m gonna tell a real story, I m gonna start with my name.
+5	Change the world by being yourself.
+5	Love For All, Hatred For None.
+6	Change the world by being yourself.
+6	All limitations are self-imposed.
+6	Problems are not stop signs, they are guidelines.
+8	You miss 100 percent of the shots you never take.
+9	To live will be an awfully big adventure.
+9	Every moment is a fresh beginning.
+10	Problems are not stop signs, they are guidelines.
+10	f I m gonna tell a real story, I m gonna start with my name.
+10	You can do anything, but not everything.
+10	To live will be an awfully big adventure.
+13	You miss 100 percent of the shots you never take.
+14	Whatever you do, do it well.
+14	What we think, we become.
+15	Everything you can imagine is real.
+15	Love For All, Hatred For None.
+15	Never let your emotions overpower your intelligence.
+16	Try to be a rainbow in someone s cloud.
+17	Everything you can imagine is real.
+18	f I m gonna tell a real story, I m gonna start with my name.
+18	Aspire to inspire before we expire.
+18	Try to be a rainbow in someone s cloud.
+19	Problems are not stop signs, they are guidelines.
+19	Tough times never last but tough people do.
+19	Everything you can imagine is real.
+20	Aspire to inspire before we expire.
+20	Try to be a rainbow in someone s cloud.
+21	Try to be a rainbow in someone s cloud.
+21	What we think, we become.
+21	Tough times never last but tough people do.
+21	Every moment is a fresh beginning.
+22	You must be the change you wish to see in the world.
+23	Never regret anything that made you smile.
+23	Change the world by being yourself.
+23	Never let your emotions overpower your intelligence.
+24	To live will be an awfully big adventure.
+24	Problems are not stop signs, they are guidelines.
+25	Die with memories, not dreams.
+25	You miss 100 percent of the shots you never take.
+25	f I m gonna tell a real story, I m gonna start with my name.
+25	All limitations are self-imposed.
+26	You must be the change you wish to see in the world.
+26	Never regret anything that made you smile.
+26	Never let your emotions overpower your intelligence.
+26	Never let your emotions overpower your intelligence.
+28	f I m gonna tell a real story, I m gonna start with my name.
+28	All limitations are self-imposed.
+28	You miss 100 percent of the shots you never take.
+28	Problems are not stop signs, they are guidelines.
+29	You miss 100 percent of the shots you never take.
+29	Try to be a rainbow in someone s cloud.
+29	Tough times never last but tough people do.
+30	Try to be a rainbow in someone s cloud.
+30	You miss 100 percent of the shots you never take.
+30	Aspire to inspire before we expire.
+30	You can do anything, but not everything.
+31	To live will be an awfully big adventure.
+31	Try to be a rainbow in someone s cloud.
+31	To live will be an awfully big adventure.
+32	Everything you can imagine is real.
+33	Never regret anything that made you smile.
+33	I don t need it to be easy, I need it to be worth it.
+33	Change the world by being yourself.
+34	All limitations are self-imposed.
+34	All limitations are self-imposed.
+35	Never regret anything that made you smile.
+35	You can do anything, but not everything.
+35	Problems are not stop signs, they are guidelines.
+35	Never let your emotions overpower your intelligence.
+36	You must be the change you wish to see in the world.
+36	I don t need it to be easy, I need it to be worth it.
+37	Tough times never last but tough people do.
+38	Aspire to inspire before we expire.
+38	Change the world by being yourself.
+38	Problems are not stop signs, they are guidelines.
+39	What we think, we become.
+39	You miss 100 percent of the shots you never take.
+39	Never let your emotions overpower your intelligence.
+39	What we think, we become.
+40	Aspire to inspire before we expire.
+40	Never let your emotions overpower your intelligence.
+40	Change the world by being yourself.
+41	Whatever you do, do it well.
+42	Problems are not stop signs, they are guidelines.
+42	Tough times never last but tough people do.
+45	Love For All, Hatred For None.
+45	What we think, we become.
+46	You miss 100 percent of the shots you never take.
+46	You must be the change you wish to see in the world.
+47	You must be the change you wish to see in the world.
+47	Every moment is a fresh beginning.
+47	All limitations are self-imposed.
+49	Tough times never last but tough people do.
+50	Everything you can imagine is real.
+50	Every moment is a fresh beginning.
+50	Every moment is a fresh beginning.
+50	You miss 100 percent of the shots you never take.
+51	I don t need it to be easy, I need it to be worth it.
+52	What we think, we become.
+56	All limitations are self-imposed.
+56	Whatever you do, do it well.
+56	Aspire to inspire before we expire.
+59	Die with memories, not dreams.
+59	To live will be an awfully big adventure.
+60	You must be the change you wish to see in the world.
+60	Try to be a rainbow in someone s cloud.
+60	Problems are not stop signs, they are guidelines.
+61	Tough times never last but tough people do.
+63	Never let your emotions overpower your intelligence.
+63	Whatever you do, do it well.
+63	Never regret anything that made you smile.
+66	Tough times never last but tough people do.
+66	f I m gonna tell a real story, I m gonna start with my name.
+66	To live will be an awfully big adventure.
+67	Love For All, Hatred For None.
+67	Die with memories, not dreams.
+68	Never let your emotions overpower your intelligence.
+68	To live will be an awfully big adventure.
+68	Never let your emotions overpower your intelligence.
+68	Never let your emotions overpower your intelligence.
+69	Tough times never last but tough people do.
+69	Tough times never last but tough people do.
+69	f I m gonna tell a real story, I m gonna start with my name.
+69	To live will be an awfully big adventure.
+70	Change the world by being yourself.
+70	Never regret anything that made you smile.
+70	Whatever you do, do it well.
+70	Change the world by being yourself.
+71	You can do anything, but not everything.
+71	Try to be a rainbow in someone s cloud.
+72	What we think, we become.
+72	You can do anything, but not everything.
+73	Tough times never last but tough people do.
+74	Love For All, Hatred For None.
+74	Aspire to inspire before we expire.
+74	Die with memories, not dreams.
+75	Whatever you do, do it well.
+75	Everything you can imagine is real.
+75	You miss 100 percent of the shots you never take.
+75	Whatever you do, do it well.
+76	You must be the change you wish to see in the world.
+76	Love For All, Hatred For None.
+76	Die with memories, not dreams.
+76	Aspire to inspire before we expire.
+77	Never let your emotions overpower your intelligence.
+77	You must be the change you wish to see in the world.
+77	Everything you can imagine is real.
+77	Every moment is a fresh beginning.
+79	You can do anything, but not everything.
+79	Die with memories, not dreams.
+81	All limitations are self-imposed.
+81	f I m gonna tell a real story, I m gonna start with my name.
+81	You can do anything, but not everything.
+81	Tough times never last but tough people do.
+82	Die with memories, not dreams.
+82	Problems are not stop signs, they are guidelines.
+83	Try to be a rainbow in someone s cloud.
+83	You can do anything, but not everything.
+84	Never regret anything that made you smile.
+84	You must be the change you wish to see in the world.
+84	Every moment is a fresh beginning.
+84	Never let your emotions overpower your intelligence.
+85	I don t need it to be easy, I need it to be worth it.
+85	f I m gonna tell a real story, I m gonna start with my name.
+85	You miss 100 percent of the shots you never take.
+86	Aspire to inspire before we expire.
+86	Change the world by being yourself.
+86	Love For All, Hatred For None.
+86	Aspire to inspire before we expire.
+87	I don t need it to be easy, I need it to be worth it.
+88	I don t need it to be easy, I need it to be worth it.
+88	Never regret anything that made you smile.
+89	Never regret anything that made you smile.
+89	What we think, we become.
+90	You miss 100 percent of the shots you never take.
+90	Problems are not stop signs, they are guidelines.
+90	You must be the change you wish to see in the world.
+90	What we think, we become.
+91	You can do anything, but not everything.
+91	Die with memories, not dreams.
+92	Aspire to inspire before we expire.
+92	Every moment is a fresh beginning.
+92	I don t need it to be easy, I need it to be worth it.
+93	Everything you can imagine is real.
+93	Change the world by being yourself.
+93	Never regret anything that made you smile.
+93	You miss 100 percent of the shots you never take.
+94	Try to be a rainbow in someone s cloud.
+94	You must be the change you wish to see in the world.
+94	Love For All, Hatred For None.
+97	What we think, we become.
+97	Problems are not stop signs, they are guidelines.
+98	Love For All, Hatred For None.
+98	Problems are not stop signs, they are guidelines.
+98	To live will be an awfully big adventure.
+98	You must be the change you wish to see in the world.
+99	Tough times never last but tough people do.
+99	All limitations are self-imposed.
+99	Whatever you do, do it well.
+99	Never let your emotions overpower your intelligence.
+100	Whatever you do, do it well.
+100	Never let your emotions overpower your intelligence.
+100	Never regret anything that made you smile.
+101	asdasdasd
+101	aaaaaa
+101	1
+101	dd

@@ -1,0 +1,51 @@
+USER_ID	EDUCATION
+2	University of Pensylvania
+3	TEPAK
+4	TEPAK
+6	University of California
+9	Princeton University
+10	Harvard University
+12	University of California
+14	Hopkins University
+16	TEPAK
+18	California Instutite of Technology
+19	Stanford University
+20	University of Oxford
+21	European University
+22	Massachusetts Institute of Technology
+24	California Instutite of Technology
+25	European University
+27	European University
+33	University of California
+36	California Instutite of Technology
+37	Stanford University
+39	University of Cyprus
+46	TEPAK
+47	University of Cyprus
+48	University of Pensylvania
+54	Harvard University
+57	 Yale University
+59	California Instutite of Technology
+62	TEPAK
+68	California Instutite of Technology
+71	Cornell University
+73	University of Cyprus
+74	Implerial Collage
+75	Hopkins University
+76	University of Oxford
+77	University of Nicosia
+79	Princeton University
+80	University of Oxford
+82	University of Tronto
+83	University of Tronto
+87	University of Tronto
+89	Duke University
+90	Hopkins University
+93	University of California
+94	Duke University
+95	University of Tronto
+101	ddd
+101	ddddd
+101	ddddd
+101	ddd
+101	ddd
