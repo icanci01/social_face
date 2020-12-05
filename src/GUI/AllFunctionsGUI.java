@@ -68,13 +68,8 @@ public class AllFunctionsGUI extends JFrame implements ActionListener {
         
         show_friends.addActionListener(e -> {
 			frame.setVisible(false);
-			try {
-				new ShowFriendsGUI(con, prof_id);
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		});
+            new ShowFriendsGUI(con, prof_id);
+        });
         
         show_f_request.addActionListener(e -> {
 			frame.setVisible(false);
@@ -91,18 +86,12 @@ public class AllFunctionsGUI extends JFrame implements ActionListener {
 			new ShowKUpdatesGUI(con, prof_id);
 		});
 
-        exit.addActionListener(new ActionListener() {
+        exit.addActionListener(e -> {
+            frame.setVisible(false);
+            JOptionPane.showMessageDialog(null, "Have a nice day :)\n", "Logged Out", JOptionPane.DEFAULT_OPTION);
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				frame.hide();
-				JOptionPane.showMessageDialog(null, "Have a nice day :)\n", "Logged Out", JOptionPane.DEFAULT_OPTION);
+            new FirstGUI(con);
 
-				new LoginGUI(con, false);
-
-			}
-        	
         });
     }
 

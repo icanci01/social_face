@@ -13,6 +13,7 @@ import java.sql.SQLException;
 
 public class ShowFriendsGUI extends JFrame {
     private final String[] header = {"ID", "FIRST NAME", "LAST NAME"};
+    private ResultSet mostPop = null;
 
     public ShowFriendsGUI(Connection con, int prof_id) {
 
@@ -27,6 +28,7 @@ public class ShowFriendsGUI extends JFrame {
         JTextField text = new JTextField("Insert profile's id to delete from friends");
 
         ResultSet rs = null;
+        ResultSet mostPop = null;
         String sp = "{call upsSeeAllFriends(?)}";
 
         try {
@@ -64,6 +66,22 @@ public class ShowFriendsGUI extends JFrame {
             back.addActionListener(e -> {
                 frame.setVisible(false);
                 new AllFunctionsGUI(con, prof_id);
+            });
+
+            most_popular.addActionListener(e -> {
+                try {
+                    if(mostPop.next()){
+                       // model.remove(); -- Here we should reove all the data from the model or show a different model.
+                        int id = mostPop.getInt("id");
+                        String fn = mostPop.getString("first_name");
+                        String ln = mostPop.getString("last_name");
+                        model.addRow(new Object[]{id, fn, ln});
+
+
+                    }
+                } catch (SQLException sqlException) {
+                    sqlException.printStackTrace();
+                }
             });
 
 
@@ -106,7 +124,7 @@ public class ShowFriendsGUI extends JFrame {
         return true;
     }
 
-    private ResultSet retrieveFriends(int prof_id, String sp, Connection con) throws SQLException {
+    private static ResultSet retrieveFriends(int prof_id, String sp, Connection con) throws SQLException {
         CallableStatement cs;
         cs = con.prepareCall(sp);
         cs.setInt(1, prof_id);
@@ -114,16 +132,15 @@ public class ShowFriendsGUI extends JFrame {
 
     }
 
-    private ResultSet retrieveMostPopular(int profile_id, Connection con){
-        String sp1 = "{call upsFindMostPopularFriend(?,?)}";
+    private static ResultSet retrieveMostPopular(int profile_id, Connection con) throws SQLException {
+        String sp1 = "{call upsFindMostPopularFriend(?)}";
+        CallableStatement cs = null;
         try {
-            CallableStatement cs = con.prepareCall(sp1);
-            cs.setInt();
-
+            cs = con.prepareCall(sp1);
+            cs.setInt(1, profile_id);
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
-
-
+        return (cs.executeQuery());
     }
 }
