@@ -19,20 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5738b00c-c003-496f-b60d-0c043ab9cbf0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/GUI/ShowMostPopularFriendGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/social_face/GUI/AllFunctionsGUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/social_face/GUI/AllFunctionsGUI$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/social_face/GUI/AllFunctionsGUI$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/social_face/GUI/AllFunctionsGUI$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/social_face/GUI/AllFunctionsGUI$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/social_face/GUI/AllFunctionsGUI$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/social_face/GUI/AllFunctionsGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/social_face/GUI/AllFunctionsGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/social_face/GUI/SearchObjectGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/social_face/GUI/SearchObjectGUI.class" afterDir="false" />
+    <list default="true" id="5738b00c-c003-496f-b60d-0c043ab9cbf0" name="Default Changelist" comment="Small change">
       <change beforePath="$PROJECT_DIR$/src/GUI/AllFunctionsGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/AllFunctionsGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/MainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MainGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/SearchObjectGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/SearchObjectGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/ShowFriendsGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ShowFriendsGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,6 +115,7 @@
       <updated>1607139780481</updated>
       <workItem from="1607139784760" duration="399000" />
       <workItem from="1607140203350" duration="5485000" />
+      <workItem from="1607147740708" duration="54000" />
     </task>
     <task id="LOCAL-00001" summary="Small change">
       <created>1607140318521</created>
@@ -182,9 +171,9 @@
       <screen x="-1920" y="0" width="1920" height="1042" />
     </state>
     <state width="938" height="352" key="GridCell.Tab.0.right/-1920.0.1920.1042/0.0.1536.834@-1920.0.1920.1042" timestamp="1607145329848" />
-    <state x="-1480" y="99" key="SettingsEditor" timestamp="1607139839831">
+    <state x="-1480" y="99" key="SettingsEditor" timestamp="1607147764664">
       <screen x="-1920" y="0" width="1920" height="1042" />
     </state>
-    <state x="-1480" y="99" key="SettingsEditor/-1920.0.1920.1042/0.0.1536.834@-1920.0.1920.1042" timestamp="1607139839831" />
+    <state x="-1480" y="99" key="SettingsEditor/-1920.0.1920.1042/0.0.1536.834@-1920.0.1920.1042" timestamp="1607147764664" />
   </component>
 </project>

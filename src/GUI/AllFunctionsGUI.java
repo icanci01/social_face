@@ -64,6 +64,7 @@ public class AllFunctionsGUI extends JFrame implements ActionListener {
 			frame.setVisible(false);
 			suGUI = new SearchUserGUI(con, prof_id);
 		});
+
         
         show_friends.addActionListener(e -> {
 			frame.setVisible(false);
