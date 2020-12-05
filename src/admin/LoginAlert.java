@@ -1,4 +1,4 @@
-package app;
+package admin;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

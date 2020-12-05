@@ -1,4 +1,4 @@
-package app;
+package admin;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -138,10 +138,9 @@ public class Main extends Application {
         Button back_btn = new Button("Go back!");
         // Confirmation User Graphical Interface
         Label success = new Label("Function executed successfully!");
-        success.setFont(main_font);
-
         VBox success_box = new VBox(5);
         success_box.setAlignment(Pos.CENTER);
+        success.setFont(main_font);
 
         back_btn.setOnAction(event -> window.setScene(main_scene));
 
