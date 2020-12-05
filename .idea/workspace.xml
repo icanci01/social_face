@@ -20,9 +20,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5738b00c-c003-496f-b60d-0c043ab9cbf0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/OMEN.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/OMEN.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/admin/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/social_face/admin/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/admin/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin/MainAdminAPP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/AddAlbumGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/AddAlbumGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/AddBookmarkGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/AddBookmarkGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/AddEditShowGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/AddEditShowGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/AddEventGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/AddEventGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/AddPhotoGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/AddPhotoGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/AddVideoGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/AddVideoGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/AllFunctionsGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/AllFunctionsGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/CreateAccountGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/CreateAccountGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/CreateProfileGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/CreateProfileGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/EditAlbumGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EditAlbumGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/EditBookmarkGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EditBookmarkGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/EditEventGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EditEventGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/EditPhotoGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EditPhotoGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/EditVideoGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/EditVideoGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/FirstGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/FirstGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/FriendRequestGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/FriendRequestGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/LoginGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/LoginGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/MainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MainGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/SearchAdvanceUserGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/SearchAdvanceUserGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/SearchAlbumGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/SearchAlbumGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/SearchObjectGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/SearchObjectGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/SearchSimpleUserGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/SearchSimpleUserGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/SearchUserGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/SearchUserGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ShowAlbumCommnetsGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ShowAlbumCommnetsGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ShowAlbumsGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ShowAlbumsGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ShowBookmarksGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ShowBookmarksGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ShowEventGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ShowEventGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ShowFriendsGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ShowFriendsGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ShowKUpdatesGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ShowKUpdatesGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ShowPhotoGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ShowPhotoGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ShowPhotoLikesGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ShowPhotoLikesGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ShowProfileGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ShowProfileGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ShowResultsGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ShowResultsGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ShowVideoCommentsGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ShowVideoCommentsGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ShowVideosGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ShowVideosGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,14 +87,20 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../sqljdbc_8.4/enu/mssql-jdbc-8.4.1.jre8.jar!/" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="project.propCompiler" />
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="admin.Main" />
+  <component name="RunManager" selected="Application.MainGUI">
+    <configuration name="MainAdminAPP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="admin.MainAdminAPP" />
       <module name="social_face" />
       <extension name="coverage">
         <pattern>
@@ -69,9 +112,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MainGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GUI.MainGUI" />
+      <module name="social_face" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MainGUI" />
+        <item itemvalue="Application.MainAdminAPP" />
       </list>
     </recent_temporary>
   </component>
@@ -89,7 +146,7 @@
       <option name="presentableId" value="Default" />
       <updated>1607139780481</updated>
       <workItem from="1607139784760" duration="399000" />
-      <workItem from="1607140203350" duration="311000" />
+      <workItem from="1607140203350" duration="3320000" />
     </task>
     <task id="LOCAL-00001" summary="Small change">
       <created>1607140318521</created>
@@ -129,22 +186,22 @@
       <screen x="-1920" y="0" width="1920" height="1042" />
     </state>
     <state x="-1254" y="266" key="FileChooserDialogImpl/-1920.0.1920.1042/0.0.1536.834@-1920.0.1920.1042" timestamp="1607139836928" />
-    <state width="1877" height="165" key="GridCell.Tab.0.bottom" timestamp="1607140183936">
+    <state width="1220" height="182" key="GridCell.Tab.0.bottom" timestamp="1607144008546">
       <screen x="-1920" y="0" width="1920" height="1042" />
     </state>
-    <state width="1877" height="165" key="GridCell.Tab.0.bottom/-1920.0.1920.1042/0.0.1536.834@-1920.0.1920.1042" timestamp="1607140183936" />
-    <state width="1877" height="165" key="GridCell.Tab.0.center" timestamp="1607140183935">
+    <state width="1220" height="182" key="GridCell.Tab.0.bottom/-1920.0.1920.1042/0.0.1536.834@-1920.0.1920.1042" timestamp="1607144008546" />
+    <state width="1220" height="182" key="GridCell.Tab.0.center" timestamp="1607144008545">
       <screen x="-1920" y="0" width="1920" height="1042" />
     </state>
-    <state width="1877" height="165" key="GridCell.Tab.0.center/-1920.0.1920.1042/0.0.1536.834@-1920.0.1920.1042" timestamp="1607140183935" />
-    <state width="1877" height="165" key="GridCell.Tab.0.left" timestamp="1607140183935">
+    <state width="1220" height="182" key="GridCell.Tab.0.center/-1920.0.1920.1042/0.0.1536.834@-1920.0.1920.1042" timestamp="1607144008545" />
+    <state width="1220" height="182" key="GridCell.Tab.0.left" timestamp="1607144008545">
       <screen x="-1920" y="0" width="1920" height="1042" />
     </state>
-    <state width="1877" height="165" key="GridCell.Tab.0.left/-1920.0.1920.1042/0.0.1536.834@-1920.0.1920.1042" timestamp="1607140183935" />
-    <state width="1877" height="165" key="GridCell.Tab.0.right" timestamp="1607140183936">
+    <state width="1220" height="182" key="GridCell.Tab.0.left/-1920.0.1920.1042/0.0.1536.834@-1920.0.1920.1042" timestamp="1607144008545" />
+    <state width="1220" height="182" key="GridCell.Tab.0.right" timestamp="1607144008545">
       <screen x="-1920" y="0" width="1920" height="1042" />
     </state>
-    <state width="1877" height="165" key="GridCell.Tab.0.right/-1920.0.1920.1042/0.0.1536.834@-1920.0.1920.1042" timestamp="1607140183936" />
+    <state width="1220" height="182" key="GridCell.Tab.0.right/-1920.0.1920.1042/0.0.1536.834@-1920.0.1920.1042" timestamp="1607144008545" />
     <state x="-1480" y="99" key="SettingsEditor" timestamp="1607139839831">
       <screen x="-1920" y="0" width="1920" height="1042" />
     </state>
