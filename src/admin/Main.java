@@ -14,7 +14,7 @@ import java.sql.*;
 
 public class Main extends Application {
 
-    public static Font main_font = new Font("Comic Sans", 20);
+    private static final Font main_font = new Font("Comic Sans", 20);
     private static Connection dbConnection;
     private static final int windows_width = 700, windows_height = 980;
     private static final String import_path = "src\\importdata\\";
@@ -34,7 +34,7 @@ public class Main extends Application {
         launch();
     }
 
-    private static Connection CreateConnection(String dbURL, String dbName, String dbUsername, String dbPassword) {
+    private static Connection createConnection(String dbURL, String dbName, String dbUsername, String dbPassword) {
         String url = (dbURL + "databaseName=" + dbName + ";user=" + dbUsername + ";password=" + dbPassword + ";");
         Connection dbCon = null;
         try {
@@ -60,7 +60,7 @@ public class Main extends Application {
         String dbPassword = "3cp2e7UW";
 
         /* --- Create the connection with the database --- */
-        dbConnection = CreateConnection(dbRL, dbName, dbUser, dbPassword);
+        dbConnection = createConnection(dbRL, dbName, dbUser, dbPassword);
         // --------------------------------------------------------------------------------- //
 
         // Running function
