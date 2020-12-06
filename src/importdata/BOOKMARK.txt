@@ -183,7 +183,3 @@ USER_ID	LINK	NAME	CAPTION	DESCRIPTION	MESSAGE	PRIVACY
 98	www.bookmark182.com	Bookmark9	null	null	null	1
 98	www.bookmark183.com	Bookmark5	null	null	null	3
 99	www.bookmark184.com	Bookmark7	null	null	null	1
-101	qwea	qwe	qwe	qwe	qwe	1
-101	qwe	qwe	qwe	qwe	qwe	1
-101	asd	asd	asd	asd	asd	1
-1	asd	asd	asd	asd	null	1

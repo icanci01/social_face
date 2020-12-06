@@ -2,9 +2,14 @@ USER_ID	EDUCATION
 2	University of Pensylvania
 3	TEPAK
 4	TEPAK
+4	University of Cyprus
+4	University of Athens
 6	University of California
+7	University of Cyprus
+7	University of Athens
 9	Princeton University
 10	Harvard University
+10	University of Patras
 12	University of California
 14	Hopkins University
 16	TEPAK
@@ -29,6 +34,7 @@ USER_ID	EDUCATION
 62	TEPAK
 68	California Instutite of Technology
 71	Cornell University
+71	University of Cyprus
 73	University of Cyprus
 74	Implerial Collage
 75	Hopkins University
