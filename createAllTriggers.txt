@@ -180,7 +180,7 @@ END
  
  GO
  
- CREATE TRIGGER [dbo].[BOOKMARK_insert]
+CREATE TRIGGER [dbo].[BOOKMARK_insert]
        ON [dbo].[BOOKMARK]
 AFTER INSERT
 AS
@@ -286,7 +286,7 @@ END
  GO
  
  
- CREATE TRIGGER [dbo].[Photo_delete]
+CREATE TRIGGER [dbo].[Photo_delete]
        ON [dbo].[PHOTO]
 AFTER DELETE
 AS
@@ -365,7 +365,7 @@ END
  
 GO
 
- CREATE TRIGGER [dbo].[VIDEO_insert]
+CREATE TRIGGER [dbo].[VIDEO_insert]
        ON [dbo].[VIDEO]
 AFTER INSERT
 AS

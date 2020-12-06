@@ -49,3 +49,7 @@ USER_ID	EDUCATION
 101	ddddd
 101	ddd
 101	ddd
+1	123
+1	dd
+104	asd
+106	123123

@@ -103,6 +103,7 @@ public class MainAdminAPP extends Application {
         import_btn.setOnAction(event -> {
             /* -- Import Database -- */
             createTables();
+            createTriggers();
             importAllData();
             window.setScene(confirmation_scene);
         });
@@ -357,8 +358,557 @@ public class MainAdminAPP extends Application {
         try {
             cs = dbConnection.prepareCall(sp);
             cs.executeUpdate();
+            System.out.println("All tables created successfully");
         } catch (SQLException exception) {
-            exception.printStackTrace();
+            System.out.println("Error, creating the tables!");
+        }
+    }
+
+    private static void createTriggers() {
+        // -- ALBUM table triggers -- //
+        System.out.println("Creating ALBUM Triggers");
+        createAlbumDeleteTrigger();
+        createAlbumInsertTrigger();
+        createAlbumUpdateTrigger();
+
+        // -- ALBUM_PHOTO table triggers -- //
+        System.out.println("Creating ALBUM_PHOTO Triggers ");
+        createAlbumPhotoDeleteTrigger();
+        createAlbumPhotoInsertTrigger();
+
+        // -- ALBUM_VIDEO table triggers -- //
+        System.out.println("Creating ALBUM_VIDEO Triggers");
+        createAlbumVideoDeleteTrigger();
+        createAlbumVideoInsertTrigger();
+
+        // -- BOOKMARK table triggers -- //
+        System.out.println("Creating BOOKMARK Triggers");
+        createBookmarkDeleteTrigger();
+        createBookmarkInsertTrigger();
+        createBookmarkUpdateTrigger();
+
+        // -- EVENT table triggers -- //
+        System.out.println("Creating EVENT Triggers");
+        createEventDeleteTrigger();
+        createEventInsertTrigger();
+        createEventUpdateTrigger();
+
+        // -- PHOTO table triggers -- //
+        System.out.println("Creating PHOTO Triggers");
+        createPhotoDeleteTrigger();
+        createPhotoInsertTrigger();
+        createPhotoUpdateTrigger();
+
+        // -- VIDEO table triggers --//
+        System.out.println("Creating VIDEO Triggers");
+        createVideoDeleteTrigger();
+        createVideoInsertTrigger();
+        createVideoUpdateTrigger();
+    }
+
+    private static void createAlbumDeleteTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[Album_delete]\n" +
+                    "       ON [dbo].[ALBUM]\n" +
+                    "AFTER DELETE\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "       DECLARE @profile_id  INT\n" +
+                    "\t   DECLARE @object_id int\n" +
+                    " \n" +
+                    "       SELECT @profile_id  = DELETED.user_id   , @object_id  =  DELETED.id    \n" +
+                    "       FROM DELETED\n" +
+                    " \n" +
+                    "       INSERT INTO LOG_FILE\n" +
+                    "       VALUES(@profile_id,'ALBUM',@object_id,'DELETED')\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating ALBUM - DELETE Trigger");
+        }
+    }
+
+    private static void createAlbumInsertTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[Album_insert]\n" +
+                    "       ON [dbo].[ALBUM]\n" +
+                    "AFTER INSERT\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "       DECLARE @profile_id INT\n" +
+                    "\t   DECLARE @object_id int\n" +
+                    " \n" +
+                    "       SELECT @profile_id = INSERTED.user_id   , @object_id  =  INSERTED.id \n" +
+                    "       FROM INSERTED\n" +
+                    " \n" +
+                    "       INSERT INTO LOG_FILE\n" +
+                    "       VALUES(@profile_id,'ALBUM',@object_id ,'Inserted')\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating ALBUM - INSERT Trigger");
+
+        }
+
+
+    }
+
+    private static void createAlbumUpdateTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[Album_update]\n" +
+                    "       ON [dbo].[ALBUM]\n" +
+                    "AFTER UPDATE\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "       DECLARE @profile_id INT\n" +
+                    "\t   DECLARE @object_id int\n" +
+                    " \n" +
+                    "       SELECT @profile_id = INSERTED.user_id   , @object_id  =  INSERTED.id \n" +
+                    "       FROM INSERTED\n" +
+                    " \n" +
+                    "      \n" +
+                    " \n" +
+                    "       INSERT INTO LOG_FILE\n" +
+                    "       VALUES(@profile_id,'ALBUM',@object_id,'UPDATED')\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating ALBUM - UPDATE Trigger");
+        }
+    }
+
+    private static void createAlbumPhotoDeleteTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[Album_Photo_delete]\n" +
+                    "       ON [dbo].[ALBUM_PHOTO]\n" +
+                    "AFTER DELETE\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "       DECLARE @profile_id  INT\n" +
+                    "\t   DECLARE @album_id int\n" +
+                    "\t   DECLARE @photo_id int\n" +
+                    "\t   DECLARE @action nvarchar(50)\n" +
+                    " \n" +
+                    "       SELECT  @album_id  =  DELETED.album_id  , @photo_id = DELETED.photo_id\n" +
+                    "       FROM DELETED\n" +
+                    "\t\t\n" +
+                    "\t\tSELECT @profile_id = a.user_id \n" +
+                    "\t   FROM PHOTO a\n" +
+                    "\t   where a.id = @photo_id\n" +
+                    "\n" +
+                    "\t   SET @action = ' DELETED PHOTO ' + CAST( @photo_id AS nvarchar) + ' FROM ALBUM ' + CAST( @album_id AS nvarchar) \n" +
+                    "       INSERT INTO LOG_FILE\n" +
+                    "       VALUES(@profile_id,'ALBUM_PHOTO',@album_id,@action)\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating ALBUM_PHOTO - DELETE Trigger");
+
+        }
+    }
+
+    private static void createAlbumPhotoInsertTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[Album_Photo_insert]\n" +
+                    "       ON [dbo].[ALBUM_PHOTO]\n" +
+                    "AFTER INSERT\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "       DECLARE @profile_id INT\n" +
+                    "\t   DECLARE @album_id int\n" +
+                    "\t   DECLARE @photo_id int\n" +
+                    "\t   DECLARE @action nvarchar(50)\n" +
+                    "       SELECT @album_id  =  INSERTED.album_id , @photo_id = INSERTED.photo_id\n" +
+                    "       FROM INSERTED\n" +
+                    "\t   \n" +
+                    "\t   SELECT @profile_id = a.user_id \n" +
+                    "\t   FROM PHOTO a\n" +
+                    "\t   where a.id = @photo_id\n" +
+                    " \n" +
+                    "\t\tSET @action = 'INSERT PHOTO ' + CAST( @photo_id AS nvarchar) + ' TO ALBUM ' + CAST(@album_id AS nvarchar) \n" +
+                    "       INSERT INTO LOG_FILE\n" +
+                    "       VALUES(@profile_id,'ALBUM_PHOTO',@album_id ,@action)\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating ALBUM_PHOTO - INSERT Trigger");
+        }
+    }
+
+    private static void createAlbumVideoDeleteTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[Album_VIDEO_delete]\n" +
+                    "       ON [dbo].[ALBUM_VIDEO]\n" +
+                    "AFTER DELETE\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "       DECLARE @profile_id  INT\n" +
+                    "\t   DECLARE @album_id int\n" +
+                    "\t   DECLARE @video_id int\n" +
+                    "\t   DECLARE @action nvarchar(50)\n" +
+                    " \n" +
+                    "       SELECT  @album_id  =  DELETED.album_id  , @video_id = DELETED.video_id\n" +
+                    "       FROM DELETED\n" +
+                    "\t \n" +
+                    "\t\t\n" +
+                    "\t   SELECT @profile_id = a.user_id \n" +
+                    "\t   FROM video a\n" +
+                    "\t   where a.id = @video_id\n" +
+                    "\n" +
+                    "\t   SET @action = 'DELETED VIDEO ' + CAST(@video_id AS nvarchar) + ' FROM ALBUM ' + CAST(@album_id AS nvarchar) \n" +
+                    "       INSERT INTO LOG_FILE\n" +
+                    "       VALUES(@profile_id,'ALBUM_VIDEO',@album_id,@action)\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating ALBUM_VIDEO - DELETE Trigger");
+        }
+    }
+
+    private static void createAlbumVideoInsertTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[Album_Video_Insert]\n" +
+                    "       ON [dbo].[ALBUM_VIDEO]\n" +
+                    "AFTER INSERT\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "       DECLARE @profile_id INT\n" +
+                    "\t   DECLARE @album_id int\n" +
+                    "\t   DECLARE @video_id int\n" +
+                    "\t   DECLARE @action nvarchar(50)\n" +
+                    "       SELECT @album_id  =  INSERTED.album_id , @video_id = INSERTED.video_id\n" +
+                    "       FROM INSERTED\n" +
+                    "\t   \n" +
+                    "\n" +
+                    "\t   SELECT @profile_id = a.user_id \n" +
+                    "\t   FROM video a\n" +
+                    "\t   where a.id = @video_id\n" +
+                    " \n" +
+                    "\t\tSET @action = 'INSERT VIDEO ' +  CAST(@video_id AS nvarchar) + ' TO ALBUM ' + CAST(@album_id AS nvarchar) \n" +
+                    "       INSERT INTO LOG_FILE\n" +
+                    "       VALUES(@profile_id,'ALBUM_VIDEO',@album_id ,@action)\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating ALBUM_VIDEO - INSERT Trigger");
+        }
+    }
+
+    private static void createBookmarkDeleteTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[BOOKMARK_delete]\n" +
+                    "       ON [dbo].[BOOKMARK]\n" +
+                    "AFTER DELETE\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "       DECLARE @profile_id  INT\n" +
+                    "\t   DECLARE @object_id int\n" +
+                    " \n" +
+                    "       SELECT @profile_id  = DELETED.user_id   , @object_id  =  DELETED.id    \n" +
+                    "       FROM DELETED\n" +
+                    " \n" +
+                    "       INSERT INTO dbo.[LOG_FILE]\n" +
+                    "       VALUES(@profile_id,'BOOKMARK',@object_id,'DELETED')\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating BOOKMARK - DELETE Trigger");
+        }
+    }
+
+    private static void createBookmarkInsertTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[BOOKMARK_insert]\n" +
+                    "       ON [dbo].[BOOKMARK]\n" +
+                    "AFTER INSERT\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "       DECLARE @profile_id INT\n" +
+                    "\t   DECLARE @object_id int\n" +
+                    " \n" +
+                    "       SELECT @profile_id = INSERTED.user_id   , @object_id  =  INSERTED.id \n" +
+                    "       FROM INSERTED\n" +
+                    " \n" +
+                    "       INSERT INTO dbo.[LOG_FILE]\n" +
+                    "       VALUES (@profile_id,'BOOKMARK',@object_id, 'Inserted')\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating BOOKMARK - INSERT Trigger");
+        }
+    }
+
+    private static void createBookmarkUpdateTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[BOOKMARK_update]\n" +
+                    "       ON [dbo].[BOOKMARK]\n" +
+                    "AFTER UPDATE\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "\t   DECLARE @profile_id int\n" +
+                    "\t   DECLARE @object_id int\n" +
+                    "       DECLARE @CustomerId INT\n" +
+                    " \n" +
+                    "       SELECT @profile_id = INSERTED.user_id    ,@object_id = inserted.id \n" +
+                    "       FROM INSERTED\n" +
+                    " \n" +
+                    "     \n" +
+                    "\n" +
+                    "\n" +
+                    "       INSERT INTO dbo.[LOG_FILE]\n" +
+                    "       VALUES(@profile_id,'BOOKMARK',@object_id, 'UPDATED')\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating BOOKMARK - UPDATE Trigger");
+        }
+    }
+
+    private static void createEventDeleteTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[Event_delete]\n" +
+                    "       ON [dbo].[EVENT]\n" +
+                    "AFTER DELETE\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "       DECLARE @profile_id  INT\n" +
+                    "\t   DECLARE @object_id int\n" +
+                    " \n" +
+                    "       SELECT @profile_id  = DELETED.owner   , @object_id  =  DELETED.id    \n" +
+                    "       FROM DELETED\n" +
+                    " \n" +
+                    "       INSERT INTO dbo.[LOG_FILE]\n" +
+                    "       VALUES(@profile_id,'EVENT',@object_id,'DELETED')\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating EVENT - DELETE Trigger");
+        }
+    }
+
+    private static void createEventInsertTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[EVENT_insert]\n" +
+                    "       ON [dbo].[EVENT]\n" +
+                    "AFTER INSERT\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "       DECLARE @profile_id INT\n" +
+                    "\t   DECLARE @object_id int\n" +
+                    " \n" +
+                    "       SELECT @profile_id = INSERTED.owner   , @object_id  =  INSERTED.id \n" +
+                    "       FROM INSERTED\n" +
+                    " \n" +
+                    "       INSERT INTO dbo.[LOG_FILE]\n" +
+                    "       VALUES (@profile_id,'EVENT',@object_id, 'Inserted')\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating EVENT - INSERT Trigger");
+        }
+    }
+
+    private static void createEventUpdateTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[EVENT_update]\n" +
+                    "       ON [dbo].[EVENT]\n" +
+                    "AFTER UPDATE\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "\t\tDECLARE @profile_id  int\n" +
+                    "\t\tDECLARE @object_id int\n" +
+                    "       DECLARE @CustomerId INT\n" +
+                    "       \n" +
+                    " \n" +
+                    "       SELECT @profile_id = INSERTED.owner  ,@object_id = inserted.id\n" +
+                    "       FROM INSERTED\n" +
+                    " \n" +
+                    "      \n" +
+                    "\n" +
+                    "\n" +
+                    "       INSERT INTO dbo.[LOG_FILE]\n" +
+                    "       VALUES(@profile_id,'EVENT',@object_id, 'UPDATED')\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating EVENT - UPDATE Trigger");
+        }
+    }
+
+    private static void createPhotoDeleteTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[Photo_delete]\n" +
+                    "       ON [dbo].[PHOTO]\n" +
+                    "AFTER DELETE\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "       DECLARE @profile_id  INT\n" +
+                    "\t   DECLARE @object_id int\n" +
+                    " \n" +
+                    "       SELECT @profile_id  = DELETED.user_id   , @object_id  =  DELETED.id    \n" +
+                    "       FROM DELETED\n" +
+                    " \n" +
+                    "       INSERT INTO LOG_FILE\n" +
+                    "       VALUES(@profile_id,'PHOTO',@object_id,'DELETED')\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating PHOTO - DELETE Trigger");
+        }
+    }
+
+    private static void createPhotoInsertTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[Photo_insert]\n" +
+                    "       ON [dbo].[PHOTO]\n" +
+                    "AFTER INSERT\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "       DECLARE @profile_id INT\n" +
+                    "\t   DECLARE @object_id int\n" +
+                    " \n" +
+                    "       SELECT @profile_id = INSERTED.user_id   , @object_id  =  INSERTED.id \n" +
+                    "       FROM INSERTED\n" +
+                    " \n" +
+                    "       INSERT INTO LOG_FILE\n" +
+                    "       VALUES(@profile_id,'PHOTO',@object_id ,'Inserted')\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating PHOTO - INSERT Trigger");
+        }
+    }
+
+    private static void createPhotoUpdateTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[Photo_update]\n" +
+                    "       ON [dbo].[PHOTO]\n" +
+                    "AFTER UPDATE\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "       DECLARE @profile_id INT\n" +
+                    "\t   \tDECLARE @object_id int\n" +
+                    "       \n" +
+                    "\t\t  \n" +
+                    "       SELECT @profile_id = INSERTED.user_id   ,@object_id = inserted.id  \n" +
+                    "       FROM INSERTED\n" +
+                    " \n" +
+                    " \n" +
+                    "       INSERT INTO LOG_FILE\n" +
+                    "       VALUES(@profile_id,'PHOTO',@object_id,'UPDATED')\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating PHOTO - UPDATE Trigger");
+        }
+    }
+
+    private static void createVideoDeleteTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[VIDEO_delete]\n" +
+                    "       ON [dbo].[VIDEO]\n" +
+                    "AFTER DELETE\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "       DECLARE @profile_id  INT\n" +
+                    "\t   DECLARE @object_id int\n" +
+                    " \n" +
+                    "       SELECT @profile_id  = DELETED.user_id   , @object_id  =  DELETED.id    \n" +
+                    "       FROM DELETED\n" +
+                    " \n" +
+                    "       INSERT INTO dbo.[LOG_FILE]\n" +
+                    "       VALUES(@profile_id,'VIDEO',@object_id,'DELETED')\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating VIDEO - DELETE Trigger");
+        }
+    }
+
+    private static void createVideoInsertTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[VIDEO_insert]\n" +
+                    "       ON [dbo].[VIDEO]\n" +
+                    "AFTER INSERT\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "       DECLARE @profile_id INT\n" +
+                    "\t   DECLARE @object_id int\n" +
+                    " \n" +
+                    "       SELECT @profile_id = INSERTED.user_id   , @object_id  =  INSERTED.id \n" +
+                    "       FROM INSERTED\n" +
+                    " \n" +
+                    "       INSERT INTO dbo.[LOG_FILE]\n" +
+                    "       VALUES (@profile_id,'VIDEO',@object_id, 'Inserted')\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating VIDEO - INSERT Trigger");
+        }
+    }
+
+    private static void createVideoUpdateTrigger() {
+        try {
+            Statement statement = dbConnection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.executeUpdate("CREATE TRIGGER [dbo].[VIDEO_update]\n" +
+                    "       ON [dbo].[VIDEO]\n" +
+                    "AFTER UPDATE\n" +
+                    "AS\n" +
+                    "BEGIN\n" +
+                    "       SET NOCOUNT ON;\n" +
+                    " \n" +
+                    "\t   DECLARE @profile_id int\n" +
+                    "\t   DECLARE @object_id int\n" +
+                    "       DECLARE @CustomerId INT\n" +
+                    "       DECLARE @Action VARCHAR(50)\n" +
+                    " \n" +
+                    "       SELECT @profile_id = INSERTED.user_id   ,@object_id = inserted.id  \n" +
+                    "       FROM INSERTED\n" +
+                    " \n" +
+                    "\t \n" +
+                    "\n" +
+                    "\n" +
+                    "       INSERT INTO dbo.[LOG_FILE]\n" +
+                    "       VALUES(@profile_id,'VIDEO',@object_id, 'UPDATED')\n" +
+                    "END");
+        } catch (SQLException sqlException) {
+            System.out.println("Error creating VIDEO - UPDATE Trigger");
         }
     }
 
@@ -371,7 +921,7 @@ public class MainAdminAPP extends Application {
             cs.executeUpdate();
             System.out.println("All tables deleted successfully!");
         } catch (SQLException exception) {
-            exception.printStackTrace();
+            System.out.println("Error deleting tables");
         }
 
     }
@@ -1052,6 +1602,7 @@ public class MainAdminAPP extends Application {
     }
 
     private static void importAllData() {
+        System.out.println("\nRunning import all data");
         importAccountData();
         importCityData();
         importLocationData();
@@ -1075,11 +1626,11 @@ public class MainAdminAPP extends Application {
         importBookmarkData();
         importEventData();
         importParticipantsData();
-
-        System.out.println("All data imported successfully!");
+        System.out.println("Finished importing all data");
     }
 
     private static void exportAccountData() {
+        System.out.println("Exporting ACCOUNT data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "ACCOUNT.txt"));
             String strAttributes = "USERNAME\tPASSWORD";
@@ -1099,11 +1650,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting ACCOUNT data");
         }
     }
 
     private static void exportAlbumData() {
+        System.out.println("Exporting ALBUM data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "ALBUM.txt"));
             String strAttributes = "USER_ID\tNAME\tDESCRIPTION\tLOCATION\tLINK\tPRIVACY";
@@ -1129,11 +1681,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting ALBUM data");
         }
     }
 
     private static void exportAlbumCommentData() {
+        System.out.println("Exporting ALBUM_COMMENT data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "ALBUM_COMMENT.txt"));
             String strAttributes = "USER_ID\tCOMMENT\tALBUM_ID";
@@ -1155,11 +1708,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting ALBUM_COMMENT data");
         }
     }
 
     private static void exportAlbumPhotoData() {
+        System.out.println("Exporting ALBUM_PHOTO data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "ALBUM_PHOTO.txt"));
             String strAttributes = "ALBUM_ID\tPHOTO_ID";
@@ -1181,11 +1735,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting ALBUM_PHOTO data");
         }
     }
 
     private static void exportAlbumVideoData() {
+        System.out.println("Exporting ALBUM_VIDEO data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "ALBUM_VIDEO.txt"));
             String strAttributes = "ALBUM_ID\tPHOTO_ID";
@@ -1207,11 +1762,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting ALBUM_VIDEO data");
         }
     }
 
     private static void exportBookmarkData() {
+        System.out.println("Exporting BOOKMARK data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "BOOKMARK.txt"));
             String strAttributes = "USER_ID\tLINK\tNAME\tCAPTION\tDESCRIPTION\tMESSAGE\tPRIVACY";
@@ -1238,11 +1794,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting BOOKMARK data");
         }
     }
 
     private static void exportCityData() {
+        System.out.println("Exporting CITY data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "CITY.txt"));
             String strAttributes = "CITY";
@@ -1263,11 +1820,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting CITY data");
         }
     }
 
     private static void exportCommentVideoData() {
+        System.out.println("Exporting COMMENT_VIDEO data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "COMMENT_VIDEO.txt"));
             String strAttributes = "USER_ID\tCOMMENT\tVIDEO_ID";
@@ -1290,11 +1848,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting COMMENT_VIDEO data");
         }
     }
 
     private static void exportEducationData() {
+        System.out.println("Exporting EDUCATION data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "EDUCATION.txt"));
             String strAttributes = "USER_ID\tEDUCATION";
@@ -1316,11 +1875,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting EDUCATION data");
         }
     }
 
     private static void exportEventData() {
+        System.out.println("Exporting EVENT data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "EVENT.txt"));
             String strAttributes = "OWNER\tNAME\tDESCRIPTION\tSTART_TIME\tEND_TIME\tLOCATION\tVENUE\tPRIVACY";
@@ -1348,11 +1908,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting EVENT data");
         }
     }
 
     private static void exportFriendRequestData() {
+        System.out.println("Exporting FRIEND_REQUEST data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "FRIEND_REQUEST.txt"));
             String strAttributes = "USER1_ID\tUSER2_ID\tPENDING\tIGNORE";
@@ -1376,11 +1937,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting FRIEND_REQUEST data");
         }
     }
 
     private static void exportInterestData() {
+        System.out.println("Exporting INTEREST data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "INTEREST.txt"));
             String strAttributes = "INTEREST";
@@ -1400,11 +1962,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting INTEREST data");
         }
     }
 
     private static void exportLikesData() {
+        System.out.println("Exporting LIKES data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "LIKES.txt"));
             String strAttributes = "USER_ID\tPHOTO_ID";
@@ -1425,11 +1988,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting LIKES data");
         }
     }
 
     private static void exportLocationData() {
+        System.out.println("Exporting LOCATION data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "LOCATION.txt"));
             String strAttributes = "STREET_NAME\tSTREET_NUMBER\tPOSTAL_CODE";
@@ -1452,11 +2016,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting LOCATION data");
         }
     }
 
     private static void exportLogFileData() {
+        System.out.println("Exporting LOG_FILE data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "LOG_FILE.txt"));
             String strAttributes = "USER_ID\tOBJECT\tOBJECT_ID\tACTION";
@@ -1479,11 +2044,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting LOG_FILE data");
         }
     }
 
     private static void exportParticipantsData() {
+        System.out.println("Exporting PARTICIPANTS data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "PARTICIPANTS.txt"));
             String strAttributes = "USER_ID\tEVENT_ID";
@@ -1505,11 +2071,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting PARTICIPANTS data");
         }
     }
 
     private static void exportPhotoData() {
+        System.out.println("Exporting PHOTO data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "PHOTO.txt"));
             String strAttributes = "USER_ID\tDIRECTORY\tHEIGHT\tWIDTH\tLINK\tPRIVACY";
@@ -1535,11 +2102,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting PHOTO data");
         }
     }
 
     private static void exportPrivacyData() {
+        System.out.println("Exporting PRIVACY data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "PRIVACY.txt"));
             String strAttributes = "PRIVACY";
@@ -1559,11 +2127,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting PRIVACY data");
         }
     }
 
     private static void exportProfileData() {
+        System.out.println("Exporting PROFILE data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "PROFILE.txt"));
             String strAttributes = "ACCOUNT_ID\tFIRST_NAME\tLAST_NAME\tLINK\tBIRTHDAY\tEMAIL\tHOMETOWN\tLOCATION\tGENDER\tVERIFIED";
@@ -1594,11 +2163,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting PROFILE data");
         }
     }
 
     private static void exportProfileInterestData() {
+        System.out.println("Exporting PROFILE_INTEREST data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "PROFILE_INTEREST.txt"));
             String strAttributes = "USER_ID\tINTEREST";
@@ -1620,11 +2190,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting PROFILE_INTEREST data");
         }
     }
 
     private static void exportQuotesData() {
+        System.out.println("Exporting QUOTES data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "QUOTES.txt"));
             String strAttributes = "USER_ID\tQUOTE";
@@ -1646,11 +2217,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting QUOTES data");
         }
     }
 
     private static void exportVideoData() {
+        System.out.println("Exporting VIDEO data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "VIDEO.txt"));
             String strAttributes = "USER_ID\tMESSAGE\tDESCRIPTION\tLENGTH\tPRIVACY";
@@ -1675,11 +2247,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting VIDEO data");
         }
     }
 
     private static void exportWebsiteData() {
+        System.out.println("Exporting WEBSITE data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "WEBSITE.txt"));
             String strAttributes = "USER_ID\tWEBSITE";
@@ -1701,11 +2274,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting WEBSITE data");
         }
     }
 
     private static void exportWorksData() {
+        System.out.println("Exporting WORKS data");
         try {
             BufferedWriter objWriter = new BufferedWriter(new FileWriter(export_path + "WORKS.txt"));
             String strAttributes = "USER_ID\tWORK";
@@ -1726,11 +2300,12 @@ public class MainAdminAPP extends Application {
             objWriter.close();
 
         } catch (Exception exception) {
-            exception.printStackTrace();
+            System.out.println("Error exporting WORKS data");
         }
     }
 
     private void exportAllData() {
+        System.out.println("\nRunning export all data");
         exportAccountData();
         exportAlbumData();
         exportAlbumCommentData();
@@ -1755,6 +2330,6 @@ public class MainAdminAPP extends Application {
         exportVideoData();
         exportWebsiteData();
         exportWorksData();
-        System.out.println("All data exported successfully!");
+        System.out.println("Finished exporting all data");
     }
 }

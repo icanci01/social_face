@@ -71,7 +71,7 @@ public class ShowFriendsGUI extends JFrame {
             most_popular.addActionListener(e -> {
                 try {
                     if(mostPop.next()){
-                       // model.remove(); -- Here we should reove all the data from the model or show a different model.
+                       // model.remove(); -- Here we should remove all the data from the model or show a different model.
                         int id = mostPop.getInt("id");
                         String fn = mostPop.getString("first_name");
                         String ln = mostPop.getString("last_name");

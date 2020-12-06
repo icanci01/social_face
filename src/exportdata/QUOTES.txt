@@ -214,3 +214,7 @@ USER_ID	QUOTE
 101	aaaaaa
 101	1
 101	dd
+104	asd
+104	1231231
+106	asdf
+1	123
